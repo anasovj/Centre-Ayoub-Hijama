@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Centre Amine Hijama | Excellence Thérapeutique</title>
+
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        arabic: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            gold:    '#C5A358',
+                            emerald: '#064E3B',
+                            dark:    '#022C22',
+                            light:   '#F4F7F5'
+                        }
+                    },
+                    borderRadius: {
+                        '4xl': '2rem',
+                        '5xl': '3rem',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* ── Base ─────────────────────────────────────── */
+        body {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            background-color: #FDFDFD;
+            color: #1A1A1A;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .bottom-nav-safe { padding-bottom: 90px; }
+
+        /* ── Glassmorphism ────────────────────────────── */
+        .glass {
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.35);
+        }
+
+        /* ── Gold Gradient Text ───────────────────────── */
+        .gold-text {
+            background: linear-gradient(135deg,#C5A358 0%,#E2C78E 50%,#C5A358 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .text-reveal {
+            background: linear-gradient(135deg,#064E3B 30%,#C5A358 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* ── Premium Card ─────────────────────────────── */
+        .premium-card {
+            background: white;
+            transition: all 0.45s cubic-bezier(0.165,0.84,0.44,1);
+            border: 1px solid rgba(6,78,59,0.05);
+        }
+        @media (hover: hover) {
+            .premium-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 25px 50px -12px rgba(6,78,59,0.15);
+                border-color: #C5A358;
+            }
+        }
+
+        /* ── Animated Button ──────────────────────────── */
+        .btn-premium {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .btn-premium::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);
+            transition: 0.5s;
+        }
+        .btn-premium:hover::after { left: 100%; }
+
+        /* ── Scrollbar ────────────────────────────────── */
+        ::-webkit-scrollbar          { width: 8px; }
+        ::-webkit-scrollbar-track    { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb    { background: #064E3B; border-radius: 10px; }
+
+        /* ── Mobile menu slide ────────────────────────── */
+        #mobile-menu { transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); }
+    </style>
+</head>
+
+<body class="font-sans bottom-nav-safe">
+
+    <!-- ░░ MOBILE MENU ░░ -->
+    <div id="mobile-menu" class="fixed inset-0 bg-brand-dark z-[200] translate-x-full lg:hidden flex flex-col p-8">
+        <div class="flex justify-between items-center mb-12">
+            <span class="text-white font-black uppercase tracking-tighter">Menu</span>
+            <button onclick="toggleMenu()" class="w-12 h-12 bg-white/10 rounded-full text-white text-xl">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="flex flex-col gap-8">
+            <a href="#accueil"  onclick="toggleMenu()" class="text-3xl font-black text-white">Accueil</a>
+            <a href="#femmes"   onclick="toggleMenu()" class="text-3xl font-black text-rose-400">Section Femmes</a>
+            <a href="#services" onclick="toggleMenu()" class="text-3xl font-black text-white">Services</a>
+            <a href="#why"      onclick="toggleMenu()" class="text-3xl font-black text-white">Pourquoi Nous</a>
+            <a href="#contact"  onclick="toggleMenu()" class="text-3xl font-black text-white">Contact</a>
+        </nav>
+    </div>
+
+    <!-- ░░ FLOATING ACTION BAR ░░ -->
+    <div class="fixed bottom-6 left-4 right-4 md:left-1/2 md:right-auto md:-translate-x-1/2 z-[100]
+                flex items-center justify-between md:justify-center gap-2
+                bg-brand-dark/95 backdrop-blur-2xl p-2 px-3 md:px-6
+                rounded-3xl shadow-2xl border border-white/10">
+        <div class="flex items-center gap-2">
+            <a href="https://wa.me/212638461716"
+               class="w-12 h-12 bg-emerald-500 rounded-2xl flex items-center justify-center text-white text-xl active:scale-95 transition-transform">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://www.instagram.com/centre_ayoub_/"
+               class="w-12 h-12 bg-gradient-to-tr from-purple-600 to-rose-500 rounded-2xl flex items-center justify-center text-white text-xl active:scale-95 transition-transform">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.tiktok.com/@centre_ayoub" target="_blank"
+               class="w-12 h-12 bg-black rounded-2xl flex items-center justify-center text-white text-xl active:scale-95 transition-transform">
+                <i class="fab fa-tiktok"></i>
+            </a>
+        </div>
+        <div class="h-8 w-[1px] bg-white/20 mx-1 hidden md:block"></div>
+        <a href="https://wa.me/212638461716"
+           class="flex-1 md:flex-none flex items-center justify-center gap-3
+                  bg-white text-brand-dark px-6 h-12 rounded-2xl
+                  font-black text-[11px] uppercase tracking-widest active:scale-95 transition btn-premium">
+            <i class="fab fa-whatsapp"></i>
+            <span>Réserver maintenant</span>
+        </a>
+    </div>
+
+    <!-- ░░ NAVBAR ░░ -->
+    <nav class="fixed w-full z-[100] px-4 py-4" id="mainNav">
+        <div class="max-w-7xl mx-auto glass rounded-2xl md:rounded-3xl shadow-lg px-6 py-3 flex items-center justify-between transition-all duration-300">
+
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 md:w-12 md:h-12 bg-brand-emerald rounded-xl flex items-center justify-center text-brand-gold shadow-inner">
+                    <i class="fas fa-leaf text-lg"></i>
+                </div>
+                <div class="hidden sm:block">
+                    <h1 class="text-xs md:text-sm font-black text-brand-emerald uppercase tracking-[0.2em] leading-none">Centre Ayoub</h1>
+                    <span class="text-[9px] font-arabic font-bold text-brand-gold tracking-widest">مركز أيوب للحجامة</span>
+                </div>
+            </div>
+
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="#accueil"  class="text-[10px] font-black uppercase tracking-widest text-brand-emerald hover:text-brand-gold transition">Accueil</a>
+                <a href="#femmes"   class="text-[10px] font-black uppercase tracking-widest text-rose-600 hover:text-rose-400 transition">Section Femmes</a>
+                <a href="#services" class="text-[10px] font-black uppercase tracking-widest text-brand-emerald hover:text-brand-gold transition">Services</a>
+                <a href="#why"      class="text-[10px] font-black uppercase tracking-widest text-brand-emerald hover:text-brand-gold transition">Pourquoi Nous</a>
+                <a href="#contact"  class="text-[10px] font-black uppercase tracking-widest text-brand-emerald hover:text-brand-gold transition">Contact</a>
+                <a href="tel:0638461716"
+                   class="hidden md:flex items-center gap-2 text-brand-emerald font-bold text-sm">
+                    <i class="fas fa-phone-alt text-brand-gold"></i>
+                    <span>0638-461716</span>
+                </a>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <a href="https://wa.me/212638461716"
+                   class="bg-brand-emerald text-white px-5 py-2.5 rounded-xl font-bold text-[10px] uppercase tracking-widest btn-premium shadow-md hidden md:block">
+                    Prendre RDV
+                </a>
+                <button onclick="toggleMenu()" class="lg:hidden text-brand-emerald">
+                    <i class="fas fa-bars-staggered text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ░░ HERO ░░ -->
+    <section id="accueil" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-brand-emerald/5 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+
+            <div data-aos="fade-right">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-emerald/10 text-brand-emerald text-[10px] font-bold uppercase tracking-widest mb-8">
+                    <span class="w-1.5 h-1.5 bg-brand-gold rounded-full animate-pulse"></span>
+                    Service de médecine holistique
+                </div>
+                <h1 class="text-5xl md:text-7xl font-black text-brand-dark leading-[1.1] mb-6 tracking-tighter">
+                    Centre Ayoub <br><span class="gold-text">Hijama</span>
+                </h1>
+                <p class="text-brand-emerald font-arabic font-bold text-3xl md:text-4xl mb-8 leading-relaxed">
+                    مركز أيوب للحجامة
+                </p>
+                <p class="text-slate-500 text-lg mb-10 max-w-lg leading-relaxed">
+                    Découvrez la puissance de la guérison naturelle par la hijama thérapeutique. Votre bien-être est notre priorité absolue.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="https://wa.me/212638461716"
+                       class="px-8 py-4 bg-brand-emerald text-white rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] shadow-xl shadow-emerald-900/20 text-center btn-premium">
+                        Réservez votre séance
+                    </a>
+                    <a href="#contact"
+                       class="px-8 py-4 bg-white border border-brand-emerald/10 text-brand-emerald rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] shadow-sm text-center">
+                        Voir la localisation
+                    </a>
+                </div>
+            </div>
+
+            <div class="relative" data-aos="zoom-in" data-aos-delay="200">
+                <div class="relative z-10 rounded-[2.5rem] overflow-hidden shadow-2xl border-[12px] border-white">
+                    <img src="https://scontent.frak3-1.fna.fbcdn.net/v/t39.30808-6/634468158_122109246777219594_3487323672360894103_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=5S93k-GzzdUQ7kNvwGpkKVO&_nc_oc=AdqzSeaLuUjRfrNgdolGTm6SQ36aa_-2-S__zksQMv34frceWoeLYdCs5mkaOrGTANA&_nc_zt=23&_nc_ht=scontent.frak3-1.fna&_nc_gid=MKPfSxc_vims-6pmKPWQ-g&_nc_ss=7b2a8&oh=00_Af6qo-ZYhJp9pQQ7efaAkMj65unwcJ2O-V8zrP89ho64cQ&oe=69FB8ADB"
+                         alt="Hijama Treatment" class="w-full aspect-[4/5] object-cover" crossorigin="anonymous">
+                </div>
+                <!-- Floating cards -->
+                <div class="absolute -bottom-6 -left-6 md:-left-12 glass p-6 rounded-3xl shadow-xl z-20 max-w-[200px]"
+                     data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-certificate text-brand-gold"></i>
+                        <span class="text-[10px] font-black uppercase tracking-tighter">Certifié</span>
+                    </div>
+                    <p class="text-[11px] text-slate-600 font-medium leading-tight">Experts diplômés en médecine alternative.</p>
+                </div>
+                <div class="absolute top-12 -right-6 md:-right-12 bg-brand-dark p-6 rounded-3xl shadow-xl z-20 text-white"
+                     data-aos="fade-left" data-aos-delay="500">
+                    <div class="text-3xl font-black text-brand-gold mb-1">100%</div>
+                    <p class="text-[9px] font-bold uppercase tracking-widest opacity-70">Naturel & Sûr</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ░░ SECTION FEMMES ░░ -->
+    <section id="femmes" class="py-20 bg-brand-light">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="bg-white rounded-[3rem] p-8 md:p-16 shadow-sm border border-emerald-50 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-rose-50 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+                <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+                    <div data-aos="fade-right">
+                        <div class="w-16 h-16 bg-rose-100 text-rose-500 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                            <i class="fas fa-venus"></i>
+                        </div>
+                        <h2 class="text-3xl md:text-4xl font-black text-brand-dark mb-4">Section Dédiée aux Femmes</h2>
+                        <p class="text-rose-500 font-arabic font-bold text-2xl mb-6">قسم خاص بالسيدات</p>
+                        <p class="text-slate-500 leading-relaxed mb-8">
+                            Nous offrons un environnement totalement privé et confortable avec une équipe féminine hautement qualifiée pour répondre à vos besoins spécifiques en toute sérénité.
+                        </p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center gap-3 text-sm font-semibold text-slate-700">
+                                <i class="fas fa-check-circle text-rose-400"></i> Intimité Totale Garantie
+                            </li>
+                            <li class="flex items-center gap-3 text-sm font-semibold text-slate-700">
+                                <i class="fas fa-check-circle text-rose-400"></i> Personnel Féminin Spécialisé
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="rounded-3xl overflow-hidden shadow-lg" data-aos="zoom-in">
+                        <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                             class="w-full h-80 object-cover" alt="Section Femmes" crossorigin="anonymous">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ░░ SERVICES ░░ -->
+    <section id="services" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20" data-aos="fade-up">
+                <h2 class="text-[11px] font-black text-brand-gold uppercase tracking-[0.4em] mb-4">Prestations</h2>
+                <h3 class="text-4xl md:text-5xl font-black text-brand-dark mb-4">Nos Rituels de Soins</h3>
+                <p class="text-brand-emerald font-arabic font-bold text-2xl mb-6">خدماتنا</p>
+                <div class="w-20 h-1.5 bg-brand-gold mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Hijama du Dos -->
+                <div class="premium-card p-8 rounded-[2.5rem]" data-aos="fade-up">
+                    <div class="flex justify-between items-start mb-8">
+                        <div class="w-14 h-14 bg-brand-light text-brand-emerald rounded-2xl flex items-center justify-center text-xl">
+                            <i class="fas fa-child"></i>
+                        </div>
+                        <span class="px-4 py-1 bg-brand-emerald/5 text-brand-emerald text-[9px] font-black uppercase tracking-widest rounded-full">Populaire</span>
+                    </div>
+                    <h4 class="text-2xl font-black text-brand-dark mb-2">Hijama du Dos</h4>
+                    <p class="text-slate-400 text-sm mb-8 leading-relaxed">Libérez les tensions accumulées et purifiez votre corps.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 rounded-2xl bg-brand-light">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Pack 1 — Hijama seule</span>
+                            <span class="text-lg font-black text-brand-emerald">150 DH</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 rounded-2xl border border-brand-gold/20 bg-brand-gold/5">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-brand-dark">Pack 2 — Massage + Hijama</span>
+                            <span class="text-lg font-black text-brand-gold">200 DH</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 rounded-2xl bg-brand-dark">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-white/60">Pack 3 — Complet + Ventouse</span>
+                            <span class="text-lg font-black text-brand-gold">300 DH</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hijama des Jambes -->
+                <div class="premium-card p-8 rounded-[2.5rem]" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-brand-light text-brand-emerald rounded-2xl flex items-center justify-center text-xl mb-8">
+                        <i class="fas fa-walking"></i>
+                    </div>
+                    <h4 class="text-2xl font-black text-brand-dark mb-2">Hijama des Jambes</h4>
+                    <p class="text-slate-400 text-sm mb-8 leading-relaxed">Soulagement circulatoire et détente profonde des membres.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 rounded-2xl bg-brand-light">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Pack 1 — Hijama seule</span>
+                            <span class="text-lg font-black text-brand-emerald">150 DH</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 rounded-2xl border border-brand-gold/20 bg-brand-gold/5">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-brand-dark">Pack 2 — Massage + Hijama</span>
+                            <span class="text-lg font-black text-brand-gold">200 DH</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 rounded-2xl bg-brand-dark">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-white/60">Pack 3 — Thérapeutique Complet</span>
+                            <span class="text-lg font-black text-brand-gold">300 DH</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hijama du Côlon -->
+                <div class="premium-card p-8 rounded-[2.5rem]" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-brand-light text-brand-emerald rounded-2xl flex items-center justify-center text-xl mb-8">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h4 class="text-2xl font-black text-brand-dark mb-2">Hijama pour le Côlon</h4>
+                    <p class="text-slate-400 text-sm mb-8 leading-relaxed">Détox digestive et rééquilibrage du transit intestinal.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 rounded-2xl bg-brand-light">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Pack 1 — Hijama seule</span>
+                            <span class="text-lg font-black text-brand-emerald">150 DH</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 rounded-2xl border border-brand-gold/20 bg-brand-gold/5">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-brand-dark">Pack 2 — Massage + Hijama</span>
+                            <span class="text-lg font-black text-brand-gold">200 DH</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 rounded-2xl bg-brand-dark">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-white/60">Pack 3 — Ventouse + Massage</span>
+                            <span class="text-lg font-black text-brand-gold">300 DH</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hijama de la Tête -->
+                <div class="premium-card p-8 rounded-[2.5rem]" data-aos="fade-up">
+                    <div class="w-14 h-14 bg-brand-light text-brand-emerald rounded-2xl flex items-center justify-center text-xl mb-8">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h4 class="text-2xl font-black text-brand-dark mb-2">Hijama de la Tête</h4>
+                    <p class="text-slate-400 text-sm mb-8 leading-relaxed">Idéal pour les migraines, le stress et la clarté mentale.</p>
+                    <div class="flex items-center justify-between p-4 rounded-2xl bg-brand-dark text-white">
+                        <span class="text-[10px] font-bold uppercase tracking-wider opacity-60">Séance Unique</span>
+                        <span class="text-lg font-black text-brand-gold">150 DH</span>
+                    </div>
+                </div>
+
+                <!-- Massage -->
+                <div class="premium-card p-8 rounded-[2.5rem]" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-brand-light text-brand-emerald rounded-2xl flex items-center justify-center text-xl mb-8">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h4 class="text-2xl font-black text-brand-dark mb-2">Massage</h4>
+                    <p class="text-slate-400 text-sm mb-8 leading-relaxed">Sportif ou relaxant — récupération musculaire profonde.</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-4 rounded-2xl bg-brand-light">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">30 min — Sportif / Relax</span>
+                            <span class="text-lg font-black text-brand-emerald">200 DH</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 rounded-2xl border border-brand-gold/20 bg-brand-gold/5">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-brand-dark">50 min — Sportif / Relax</span>
+                            <span class="text-lg font-black text-brand-gold">300 DH</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ░░ WHY US ░░ -->
+    <section id="why" class="py-24 bg-brand-dark relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-brand-gold font-black uppercase tracking-[0.3em] text-xs mb-4">Notre Engagement</h2>
+                <h3 class="text-4xl md:text-5xl font-black text-white mb-4">Pourquoi choisir<br>le Centre Amine ?</h3>
+                <p class="text-brand-emerald font-arabic font-bold text-2xl">لماذا تختارنا؟</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white/5 border border-white/10 rounded-[2rem] p-10 text-center hover:border-brand-gold/50 transition-all duration-300" data-aos="fade-up">
+                    <div class="w-14 h-14 bg-brand-gold/20 text-brand-gold rounded-full flex items-center justify-center text-xl mx-auto mb-6">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <h4 class="text-xl font-black text-white mb-3">Équipe Spécialisée</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Praticiens certifiés et expérimentés en hijama thérapeutique.</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-[2rem] p-10 text-center hover:border-brand-gold/50 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-brand-gold/20 text-brand-gold rounded-full flex items-center justify-center text-xl mx-auto mb-6">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4 class="text-xl font-black text-white mb-3">Hygiène & Sécurité</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Environnement stérilisé avec matériel médical à usage unique.</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-[2rem] p-10 text-center hover:border-brand-gold/50 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-brand-gold/20 text-brand-gold rounded-full flex items-center justify-center text-xl mx-auto mb-6">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h4 class="text-xl font-black text-white mb-3">Équipements Modernes</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Technologies récentes pour des soins efficaces et confortables.</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-[2rem] p-10 text-center hover:border-brand-gold/50 transition-all duration-300" data-aos="fade-up">
+                    <div class="w-14 h-14 bg-brand-gold/20 text-brand-gold rounded-full flex items-center justify-center text-xl mx-auto mb-6">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h4 class="text-xl font-black text-white mb-3">Suivi Personnalisé</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Accompagnement individuel et bienveillant pour chaque patient.</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-[2rem] p-10 text-center hover:border-brand-gold/50 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-brand-gold/20 text-brand-gold rounded-full flex items-center justify-center text-xl mx-auto mb-6">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h4 class="text-xl font-black text-white mb-3">Horaires Flexibles</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Ouvert 7 jours sur 7, de 9h00 à 20h00.</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-[2rem] p-10 text-center hover:border-brand-gold/50 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-brand-gold/20 text-brand-gold rounded-full flex items-center justify-center text-xl mx-auto mb-6">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4 class="text-xl font-black text-white mb-3">Sections Séparées</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Espaces dédiés hommes et femmes pour plus d'intimité.</p>
+                </div>
+            </div>
+
+            <!-- Quote -->
+            <div class="mt-20 max-w-2xl mx-auto" data-aos="zoom-in">
+                <div class="border-2 border-brand-gold/30 rounded-[2rem] p-12 text-center">
+                    <i class="fas fa-quote-left text-4xl text-brand-gold mb-6 block"></i>
+                    <p class="text-xl text-white font-medium italic mb-6">
+                        "La santé est une couronne sur la tête des bien-portants que seuls les malades voient."
+                    </p>
+                    <span class="text-brand-gold font-black uppercase tracking-widest text-[10px]">Sagesse Orientale</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ░░ CONTACT & MAP ░░ -->
+    <section id="contact" class="py-24 bg-brand-light">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-[11px] font-black text-brand-gold uppercase tracking-[0.4em] mb-4">Localisation</h2>
+                <h3 class="text-4xl md:text-5xl font-black text-brand-dark mb-2">Nous Trouver</h3>
+                <p class="text-brand-emerald font-arabic font-bold text-2xl">اتصل بنا</p>
+            </div>
+
+            <div class="bg-white rounded-[3rem] overflow-hidden shadow-xl border border-slate-100 grid lg:grid-cols-5">
+
+                <div class="lg:col-span-2 p-10 md:p-16">
+                    <div class="space-y-10">
+                        <div class="flex gap-6">
+                            <div class="flex-shrink-0 text-brand-gold text-xl mt-1"><i class="fas fa-map-marked-alt"></i></div>
+                            <div>
+                                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Adresse</p>
+                                <p class="font-bold text-brand-emerald">206, 212 Bd de Témara, Casablanca, Maroc</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6">
+                            <div class="flex-shrink-0 text-brand-gold text-xl mt-1"><i class="fas fa-clock"></i></div>
+                            <div>
+                                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Disponibilité</p>
+                                <p class="font-bold text-brand-emerald">7j/7 — 09:00 à 20:00</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6">
+                            <div class="flex-shrink-0 text-brand-gold text-xl mt-1"><i class="fas fa-phone-square-alt"></i></div>
+                            <div>
+                                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Contact Direct</p>
+                                <p class="font-bold text-brand-emerald">0638-461716</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-12 flex gap-3 flex-wrap">
+                        <a href="https://wa.me/212638461716" target="_blank"
+                           class="w-12 h-12 bg-emerald-500 text-white rounded-xl flex items-center justify-center shadow-lg hover:scale-110 transition">
+                            <i class="fab fa-whatsapp text-xl"></i>
+                        </a>
+                        <a href="https://www.instagram.com/centre_ayoub_/" target="_blank"
+                           class="w-12 h-12 bg-gradient-to-tr from-purple-600 to-rose-500 text-white rounded-xl flex items-center justify-center shadow-lg hover:scale-110 transition">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="https://www.facebook.com/people/%D9%85%D8%B1%D9%83%D8%B2-%D8%A3%D9%8A%D9%88%D8%A8-%D9%84%D9%84%D8%B9%D9%86%D8%A7%D9%8A%D8%A9-%D8%A7%D9%84%D8%AC%D8%B3%D8%AF%D9%8A%D8%A9/61586587846499/" target="_blank"
+                           class="w-12 h-12 bg-blue-600 text-white rounded-xl flex items-center justify-center shadow-lg hover:scale-110 transition">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@centre_ayoub" target="_blank"
+                           class="w-12 h-12 bg-black text-white rounded-xl flex items-center justify-center shadow-lg hover:scale-110 transition">
+                            <i class="fab fa-tiktok text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-3 h-[400px] lg:h-auto">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3323.8291417551323!2d-7.589886!3d33.518844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzPCsDMxJzA3LjgiTiA3wrAzNScyMy42Ilc!5e0!3m2!1sen!2sma!4v1714578000000!5m2!1sen!2sma"
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ░░ FOOTER ░░ -->
+    <footer class="bg-brand-emerald py-16 text-white border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-brand-gold">
+                        <i class="fas fa-leaf text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-black uppercase tracking-widest text-sm">Centre Ayoub</h4>
+                        <p class="text-xs text-white/50 font-arabic">مركز أيوب للحجامة</p>
+                    </div>
+                </div>
+                <div class="flex gap-6 flex-wrap justify-center">
+                    <a href="https://www.instagram.com/centre_ayoub_/" target="_blank" class="text-[10px] font-black uppercase tracking-widest hover:text-brand-gold transition">Instagram</a>
+                    <a href="https://www.facebook.com/people/%D9%85%D8%B1%D9%83%D8%B2-%D8%A3%D9%8A%D9%88%D8%A8-%D9%84%D9%84%D8%B9%D9%86%D8%A7%D9%8A%D8%A9-%D8%A7%D9%84%D8%AC%D8%B3%D8%AF%D9%8A%D8%A9/61586587846499/" target="_blank" class="text-[10px] font-black uppercase tracking-widest hover:text-brand-gold transition">Facebook</a>
+                    <a href="https://www.tiktok.com/@centre_ayoub" target="_blank" class="text-[10px] font-black uppercase tracking-widest hover:text-brand-gold transition">TikTok</a>
+                    <a href="https://wa.me/212638461716" target="_blank" class="text-[10px] font-black uppercase tracking-widest hover:text-brand-gold transition">WhatsApp</a>
+                </div>
+            </div>
+            <div class="text-center pt-8 border-t border-white/5">
+                <p class="text-[9px] font-bold text-white/30 uppercase tracking-[0.5em]">© 2025 Centre Ayoub Hijama. Excellence in Wellbeing.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        window.addEventListener('load', function () {
+            AOS.init({ duration: 1000, once: true, offset: 100 });
+        });
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('translate-x-full');
+            document.body.style.overflow = menu.classList.contains('translate-x-full') ? 'auto' : 'hidden';
+        }
+
+        // Sticky navbar shrink
+        window.addEventListener('scroll', () => {
+            const inner = document.querySelector('#mainNav > div');
+            if (window.scrollY > 50) {
+                inner.classList.remove('py-3');
+                inner.classList.add('py-2', 'shadow-2xl');
+            } else {
+                inner.classList.add('py-3');
+                inner.classList.remove('shadow-2xl');
+            }
+        });
+    </script>
+</body>
+</html>
