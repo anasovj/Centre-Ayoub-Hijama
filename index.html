@@ -1,9 +1,9 @@
-{<!DOCTYPE html>
-<html lang="fr" dir="ltr" id="html-root">
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Centre Ayoub Hijama | Excellence Thérapeutique</title>
+    <title>Centre Amine Hijama | Excellence Thérapeutique</title>
 
     <meta name="referrer" content="no-referrer-when-downgrade">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,10 +18,7 @@
                     fontFamily: {
                         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
                         arabic: ['Cairo', 'sans-serif'],
-                      },
-
-                            
-                    
+                    },
                     colors: {
                         brand: {
                             gold:    '#C5A358',
@@ -40,31 +37,37 @@
     </script>
 
     <style>
+        /* ── Base ─────────────────────────────────────── */
         body {
             scroll-behavior: smooth;
             overflow-x: hidden;
             background-color: #FDFDFD;
             color: #1A1A1A;
             -webkit-tap-highlight-color: transparent;
-            transition: font-family 0.3s;
         }
         .bottom-nav-safe { padding-bottom: 90px; }
 
-        /* Arabic body font */
-        body.lang-ar { font-family: 'Cairo', sans-serif; }
-        body.lang-fr { font-family: 'Plus Jakarta Sans', sans-serif; }
-
+        /* ── Glassmorphism ────────────────────────────── */
         .glass {
             background: rgba(255,255,255,0.85);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255,255,255,0.35);
         }
+
+        /* ── Gold Gradient Text ───────────────────────── */
         .gold-text {
             background: linear-gradient(135deg,#C5A358 0%,#E2C78E 50%,#C5A358 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        .text-reveal {
+            background: linear-gradient(135deg,#064E3B 30%,#C5A358 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* ── Premium Card ─────────────────────────────── */
         .premium-card {
             background: white;
             transition: all 0.45s cubic-bezier(0.165,0.84,0.44,1);
@@ -77,6 +80,8 @@
                 border-color: #C5A358;
             }
         }
+
+        /* ── Animated Button ──────────────────────────── */
         .btn-premium {
             position: relative;
             overflow: hidden;
@@ -92,267 +97,32 @@
         }
         .btn-premium:hover::after { left: 100%; }
 
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #064E3B; border-radius: 10px; }
+        /* ── Scrollbar ────────────────────────────────── */
+        ::-webkit-scrollbar          { width: 8px; }
+        ::-webkit-scrollbar-track    { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb    { background: #064E3B; border-radius: 10px; }
 
+        /* ── Mobile menu slide ────────────────────────── */
         #mobile-menu { transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); }
-
-        /* Language toggle button */
-        .lang-btn {
-            display: flex; align-items: center; gap: 6px;
-            padding: 6px 14px;
-            border-radius: 10px;
-            font-weight: 800;
-            font-size: 11px;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            border: 2px solid #C5A358;
-            color: #064E3B;
-            background: white;
-            cursor: pointer;
-            transition: all 0.25s;
-        }
-        .lang-btn:hover { background: #064E3B; color: #C5A358; }
-        .lang-btn .lang-flag { font-size: 16px; line-height: 1; }
-
-        /* RTL fixes */
-        [dir="rtl"] .float-left-card  { left: auto; right: -3rem; }
-        [dir="rtl"] .float-right-card { right: auto; left: -3rem; }
-        [dir="rtl"] #mobile-menu.open { transform: translateX(0); }
     </style>
 </head>
 
-<body class="font-sans bottom-nav-safe lang-fr">
-
-<!-- ░░ TRANSLATIONS ░░ -->
-<script>
-const t = {
-    fr: {
-        // Nav
-        nav_brand:      "Centre Ayoub",
-        nav_brand_sub:  "مركز أيوب للحجامة",
-        nav_accueil:    "Accueil",
-        nav_femmes:     "Section Femmes",
-        nav_services:   "Services",
-        nav_why:        "Pourquoi Nous",
-        nav_contact:    "Contact",
-        nav_rdv:        "Prendre RDV",
-        nav_phone:      "0638-461716",
-        // Floating bar
-        bar_reserve:    "Réserver maintenant",
-        // Hero
-        hero_badge:     "Service de médecine holistique",
-        hero_title1:    "Centre Ayoub",
-        hero_title2:    "Hijama",
-        hero_arabic:    "مركز أيوب للحجامة",
-        hero_desc:      "Découvrez la puissance de la guérison naturelle par la hijama thérapeutique. Votre bien-être est notre priorité absolue.",
-        hero_cta1:      "Réservez votre séance",
-        hero_cta2:      "Voir la localisation",
-        hero_cert:      "Certifié",
-        hero_cert_sub:  "Experts diplômés en médecine alternative.",
-        hero_natural:   "Naturel & Sûr",
-        // Femmes
-        femmes_title:   "Section Dédiée aux Femmes",
-        femmes_arabic:  "قسم خاص بالسيدات",
-        femmes_desc:    "Nous offrons un environnement totalement privé et confortable avec une équipe féminine hautement qualifiée pour répondre à vos besoins spécifiques en toute sérénité.",
-        femmes_li1:     "Intimité Totale Garantie",
-        femmes_li2:     "Personnel Féminin Spécialisé",
-        // Services
-        svc_label:      "Prestations",
-        svc_title:      "Nos Rituels de Soins",
-        svc_arabic:     "خدماتنا",
-        svc_popular:    "Populaire",
-        svc1_name:      "Hijama du Dos",
-        svc1_desc:      "Libérez les tensions accumulées et purifiez votre corps.",
-        svc2_name:      "Hijama des Jambes",
-        svc2_desc:      "Soulagement circulatoire et détente profonde des membres.",
-        svc3_name:      "Hijama pour le Côlon",
-        svc3_desc:      "Détox digestive et rééquilibrage du transit intestinal.",
-        svc4_name:      "Hijama de la Tête",
-        svc4_desc:      "Idéal pour les migraines, le stress et la clarté mentale.",
-        svc5_name:      "Massage",
-        svc5_desc:      "Sportif ou relaxant — récupération musculaire profonde.",
-        pack1:          "Pack 1 — Hijama seule",
-        pack2_dos:      "Pack 2 — Massage + Hijama",
-        pack3_dos:      "Pack 3 — Complet + Ventouse",
-        pack2_jambes:   "Pack 2 — Massage + Hijama",
-        pack3_jambes:   "Pack 3 — Thérapeutique Complet",
-        pack2_colon:    "Pack 2 — Massage + Hijama",
-        pack3_colon:    "Pack 3 — Ventouse + Massage",
-        seance_unique:  "Séance Unique",
-        min30:          "30 min — Sportif / Relax",
-        min50:          "50 min — Sportif / Relax",
-        // Why
-        why_label:      "Notre Engagement",
-        why_title:      "Pourquoi choisir le Centre Ayoub ?",
-        why_arabic:     "لماذا تختارنا؟",
-        why1_t:         "Équipe Spécialisée",
-        why1_d:         "Praticiens certifiés et expérimentés en hijama thérapeutique.",
-        why2_t:         "Hygiène & Sécurité",
-        why2_d:         "Environnement stérilisé avec matériel médical à usage unique.",
-        why3_t:         "Équipements Modernes",
-        why3_d:         "Technologies récentes pour des soins efficaces et confortables.",
-        why4_t:         "Suivi Personnalisé",
-        why4_d:         "Accompagnement individuel et bienveillant pour chaque patient.",
-        why5_t:         "Horaires Flexibles",
-        why5_d:         "Ouvert 7 jours sur 7, de 9h00 à 20h00.",
-        why6_t:         "Sections Séparées",
-        why6_d:         "Espaces dédiés hommes et femmes pour plus d'intimité.",
-        quote:          "\"La santé est une couronne sur la tête des bien-portants que seuls les malades voient.\"",
-        quote_src:      "Sagesse Orientale",
-        // Contact
-        contact_label:  "Localisation",
-        contact_title:  "Nous Trouver",
-        contact_arabic: "اتصل بنا",
-        addr_label:     "Adresse",
-        addr_val:       "206, 212 Bd de Témara, Casablanca, Maroc",
-        hours_label:    "Disponibilité",
-        hours_val:      "7j/7 — 09:00 à 20:00",
-        phone_label:    "Contact Direct",
-        phone_val:      "0638-461716",
-        // Footer
-        footer_copy:    "© 2026 Centre Ayoub Hijama. Excellence in Wellbeing.",
-        // Mobile menu label
-        menu_label:     "Menu",
-        // Lang button
-        lang_toggle:    "عربي",
-    },
-    ar: {
-        nav_brand:      "مركز أيوب",
-        nav_brand_sub:  "Centre Ayoub Hijama",
-        nav_accueil:    "الرئيسية",
-        nav_femmes:     "قسم السيدات",
-        nav_services:   "خدماتنا",
-        nav_why:        "لماذا نحن",
-        nav_contact:    "التواصل",
-        nav_rdv:        "احجز موعد",
-        nav_phone:      "0638-461716",
-        bar_reserve:    "احجز الآن",
-        hero_badge:     "خدمة الطب الشمولي الطبيعي",
-        hero_title1:    "مركز أيوب",
-        hero_title2:    "للحجامة",
-        hero_arabic:    "Centre Ayoub Hijama",
-        hero_desc:      "اكتشف قوة الشفاء الطبيعي من خلال العلاج بالحجامة. صحتك وراحتك هي أولويتنا القصوى.",
-        hero_cta1:      "احجز جلستك الآن",
-        hero_cta2:      "عرض الموقع",
-        hero_cert:      "معتمد",
-        hero_cert_sub:  "خبراء حاصلون على شهادات في الطب البديل.",
-        hero_natural:   "طبيعي وآمن",
-        femmes_title:   "قسم خاص بالسيدات",
-        femmes_arabic:  "Section Dédiée aux Femmes",
-        femmes_desc:    "نوفر بيئة خاصة ومريحة بالكامل مع فريق نسائي متخصص وعالي التأهيل للاستجابة لاحتياجاتك الخاصة بكل راحة وطمأنينة.",
-        femmes_li1:     "خصوصية تامة مضمونة",
-        femmes_li2:     "طاقم نسائي متخصص",
-        svc_label:      "خدماتنا",
-        svc_title:      "جلسات العلاج والرعاية",
-        svc_arabic:     "Nos Rituels de Soins",
-        svc_popular:    "الأكثر طلباً",
-        svc1_name:      "حجامة الظهر",
-        svc1_desc:      "تحرير من التوترات المتراكمة وتنقية الجسم.",
-        svc2_name:      "حجامة الأرجل",
-        svc2_desc:      "تحسين الدورة الدموية واسترخاء عميق للأطراف.",
-        svc3_name:      "حجامة القولون",
-        svc3_desc:      "تخليص هضمي وإعادة توازن الجهاز الهضمي.",
-        svc4_name:      "حجامة الرأس",
-        svc4_desc:      "مثالية للصداع النصفي والتوتر والوضوح الذهني.",
-        svc5_name:      "التدليك",
-        svc5_desc:      "رياضي أو مريح — استرداد عضلي عميق.",
-        pack1:          "الباقة 1 — حجامة فقط",
-        pack2_dos:      "الباقة 2 — تدليك + حجامة",
-        pack3_dos:      "الباقة 3 — شاملة + كاسات",
-        pack2_jambes:   "الباقة 2 — تدليك + حجامة",
-        pack3_jambes:   "الباقة 3 — علاجية شاملة",
-        pack2_colon:    "الباقة 2 — تدليك + حجامة",
-        pack3_colon:    "الباقة 3 — كاسات + تدليك",
-        seance_unique:  "جلسة واحدة",
-        min30:          "30 دقيقة — رياضي / مريح",
-        min50:          "50 دقيقة — رياضي / مريح",
-        why_label:      "التزامنا",
-        why_title:      "لماذا تختار مركز أيوب؟",
-        why_arabic:     "Pourquoi choisir Centre Ayoub ?",
-        why1_t:         "فريق متخصص",
-        why1_d:         "ممارسون معتمدون وذوو خبرة في الحجامة العلاجية.",
-        why2_t:         "النظافة والسلامة",
-        why2_d:         "بيئة معقمة مع مواد طبية للاستخدام مرة واحدة.",
-        why3_t:         "معدات حديثة",
-        why3_d:         "تقنيات حديثة لرعاية فعالة ومريحة.",
-        why4_t:         "متابعة شخصية",
-        why4_d:         "مرافقة فردية وعطوفة لكل مريض.",
-        why5_t:         "مواعيد مرنة",
-        why5_d:         "مفتوح 7 أيام في الأسبوع من 9:00 صباحاً حتى 8:00 مساءً.",
-        why6_t:         "أقسام منفصلة",
-        why6_d:         "فضاءات مخصصة للرجال والنساء لمزيد من الخصوصية.",
-        quote:          "«الصحة تاج على رؤوس الأصحاء لا يراه إلا المرضى.»",
-        quote_src:      "حكمة شرقية",
-        contact_label:  "الموقع",
-        contact_title:  "أين نجدنا",
-        contact_arabic: "اتصل بنا",
-        addr_label:     "العنوان",
-        addr_val:       "206، 212 شارع تمارة، الدار البيضاء، المغرب",
-        hours_label:    "أوقات العمل",
-        hours_val:      "7 أيام — 09:00 إلى 20:00",
-        phone_label:    "تواصل مباشر",
-        phone_val:      "0638-461716",
-        footer_copy:    "© 2026 مركز أيوب للحجامة. التميز في الصحة والعافية.",
-        menu_label:     "القائمة",
-        lang_toggle:    "FR",
-    }
-};
-
-let currentLang = 'fr';
-
-function applyLang(lang) {
-    const d = t[lang];
-    currentLang = lang;
-    const html = document.getElementById('html-root');
-    const body = document.body;
-
-    // RTL / LTR
-    html.setAttribute('lang', lang);
-    html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-    body.classList.toggle('lang-ar', lang === 'ar');
-    body.classList.toggle('lang-fr', lang !== 'ar');
-
-    // Update all i18n elements
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (d[key] !== undefined) el.textContent = d[key];
-    });
-
-    // Update lang button label
-    document.querySelectorAll('.lang-btn-label').forEach(el => el.textContent = d.lang_toggle);
-
-    // Update page title
-    document.title = lang === 'ar'
-        ? 'مركز أيوب للحجامة | التميز العلاجي'
-        : 'Centre Ayoub Hijama | Excellence Thérapeutique';
-}
-
-function toggleLang() {
-    applyLang(currentLang === 'fr' ? 'ar' : 'fr');
-}
-</script>
+<body class="font-sans bottom-nav-safe">
 
     <!-- ░░ MOBILE MENU ░░ -->
     <div id="mobile-menu" class="fixed inset-0 bg-brand-dark z-[200] translate-x-full lg:hidden flex flex-col p-8">
         <div class="flex justify-between items-center mb-12">
-            <span class="text-white font-black uppercase tracking-tighter" data-i18n="menu_label">Menu</span>
+            <span data-t="menu-label" class="text-white font-black uppercase tracking-tighter">Menu</span>
             <button onclick="toggleMenu()" class="w-12 h-12 bg-white/10 rounded-full text-white text-xl">
                 <i class="fas fa-times"></i>
             </button>
         </div>
         <nav class="flex flex-col gap-8">
-            <a href="#accueil"  onclick="toggleMenu()" class="text-3xl font-black text-white"        data-i18n="nav_accueil">Accueil</a>
-            <a href="#femmes"   onclick="toggleMenu()" class="text-3xl font-black text-rose-400"     data-i18n="nav_femmes">Section Femmes</a>
-            <a href="#services" onclick="toggleMenu()" class="text-3xl font-black text-white"        data-i18n="nav_services">Services</a>
-            <a href="#why"      onclick="toggleMenu()" class="text-3xl font-black text-white"        data-i18n="nav_why">Pourquoi Nous</a>
-            <a href="#contact"  onclick="toggleMenu()" class="text-3xl font-black text-white"        data-i18n="nav_contact">Contact</a>
-            <button onclick="toggleLang(); toggleMenu();"
-                    class="mt-4 self-start flex items-center gap-2 px-5 py-3 rounded-xl border-2 border-brand-gold text-brand-gold font-black text-sm">
-                <span class="lang-flag">🌐</span>
-                <span class="lang-btn-label">عربي</span>
-            </button>
+            <a href="#accueil"  onclick="toggleMenu()" data-t="nav-accueil" class="text-3xl font-black text-white">Accueil</a>
+            <a href="#femmes"   onclick="toggleMenu()" data-t="nav-femmes"  class="text-3xl font-black text-rose-400">Section Femmes</a>
+            <a href="#services" onclick="toggleMenu()" data-t="nav-services" class="text-3xl font-black text-white">Services</a>
+            <a href="#why"      onclick="toggleMenu()" data-t="nav-why"     class="text-3xl font-black text-white">Pourquoi Nous</a>
+            <a href="#contact"  onclick="toggleMenu()" data-t="nav-contact" class="text-3xl font-black text-white">Contact</a>
         </nav>
     </div>
 
@@ -366,7 +136,7 @@ function toggleLang() {
                class="w-12 h-12 bg-emerald-500 rounded-2xl flex items-center justify-center text-white text-xl active:scale-95 transition-transform">
                 <i class="fab fa-whatsapp"></i>
             </a>
-            <a href="https://www.instagram.com/centre_ayoub_/" target="_blank"
+            <a href="https://www.instagram.com/centre_ayoub_/"
                class="w-12 h-12 bg-gradient-to-tr from-purple-600 to-rose-500 rounded-2xl flex items-center justify-center text-white text-xl active:scale-95 transition-transform">
                 <i class="fab fa-instagram"></i>
             </a>
@@ -381,7 +151,7 @@ function toggleLang() {
                   bg-white text-brand-dark px-6 h-12 rounded-2xl
                   font-black text-[11px] uppercase tracking-widest active:scale-95 transition btn-premium">
             <i class="fab fa-whatsapp"></i>
-            <span data-i18n="bar_reserve">Réserver maintenant</span>
+            <span data-t="bar-reserve">Réserver maintenant</span>
         </a>
     </div>
 
@@ -394,33 +164,30 @@ function toggleLang() {
                     <i class="fas fa-leaf text-lg"></i>
                 </div>
                 <div class="hidden sm:block">
-                    <h1 class="text-xs md:text-sm font-black text-brand-emerald uppercase tracking-[0.2em] leading-none" data-i18n="nav_brand">Centre Ayoub</h1>
-                    <span class="text-[9px] font-arabic font-bold text-brand-gold tracking-widest" data-i18n="nav_brand_sub">مركز أيوب للحجامة</span>
+                    <h1 data-t="nav-brand" class="text-xs md:text-sm font-black text-brand-emerald uppercase tracking-[0.2em] leading-none">Centre Ayoub</h1>
+                    <span data-t="nav-brand-sub" class="text-[9px] font-arabic font-bold text-brand-gold tracking-widest">مركز أيوب للحجامة</span>
                 </div>
             </div>
 
-            <div class="hidden lg:flex items-center gap-6">
-                <a href="#accueil"  class="text-[10px] font-black uppercase tracking-widest text-brand-emerald hover:text-brand-gold transition" data-i18n="nav_accueil">Accueil</a>
-                <a href="#femmes"   class="text-[10px] font-black uppercase tracking-widest text-rose-600 hover:text-rose-400 transition"        data-i18n="nav_femmes">Section Femmes</a>
-                <a href="#services" class="text-[10px] font-black uppercase tracking-widest text-brand-emerald hover:text-brand-gold transition" data-i18n="nav_services">Services</a>
-                <a href="#why"      class="text-[10px] font-black uppercase tracking-widest text-brand-emerald hover:text-brand-gold transition" data-i18n="nav_why">Pourquoi Nous</a>
-                <a href="#contact"  class="text-[10px] font-black uppercase tracking-widest text-brand-emerald hover:text-brand-gold transition" data-i18n="nav_contact">Contact</a>
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="#accueil"  data-t="nav-accueil"  class="text-[10px] font-black uppercase tracking-widest text-brand-emerald hover:text-brand-gold transition">Accueil</a>
+                <a href="#femmes"   data-t="nav-femmes"   class="text-[10px] font-black uppercase tracking-widest text-rose-600 hover:text-rose-400 transition">Section Femmes</a>
+                <a href="#services" data-t="nav-services" class="text-[10px] font-black uppercase tracking-widest text-brand-emerald hover:text-brand-gold transition">Services</a>
+                <a href="#why"     data-t="nav-why"     class="text-[10px] font-black uppercase tracking-widest text-brand-emerald hover:text-brand-gold transition">Pourquoi Nous</a>
+                <a href="#contact" data-t="nav-contact" class="text-[10px] font-black uppercase tracking-widest text-brand-emerald hover:text-brand-gold transition">Contact</a>
                 <a href="tel:0638461716" class="hidden md:flex items-center gap-2 text-brand-emerald font-bold text-sm">
                     <i class="fas fa-phone-alt text-brand-gold"></i>
-                    <span data-i18n="nav_phone">0638-461716</span>
+                    <span>0638-461716</span>
                 </a>
             </div>
 
-            <div class="flex items-center gap-2">
-                <!-- Language Toggle -->
-                <button onclick="toggleLang()" class="lang-btn" title="Changer la langue / تغيير اللغة">
-                    <span class="lang-flag">🌐</span>
-                    <span class="lang-btn-label">عربي</span>
-                </button>
+            <div class="flex items-center gap-3">
                 <a href="https://wa.me/212638461716"
-                   class="bg-brand-emerald text-white px-5 py-2.5 rounded-xl font-bold text-[10px] uppercase tracking-widest btn-premium shadow-md hidden md:block"
-                   data-i18n="nav_rdv">Prendre RDV</a>
-                <buttson onclick="toggleMenu()" class="lg:hidden text-brand-emerald">
+                   data-t="nav-rdv"
+                   class="bg-brand-emerald text-white px-5 py-2.5 rounded-xl font-bold text-[10px] uppercase tracking-widest btn-premium shadow-md hidden md:block">
+                    Prendre RDV
+                </a>
+                <button onclick="toggleMenu()" class="lg:hidden text-brand-emerald">
                     <i class="fas fa-bars-staggered text-2xl"></i>
                 </button>
             </div>
@@ -434,52 +201,55 @@ function toggleLang() {
         <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl"></div>
 
         <div class="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+
             <div data-aos="fade-right">
                 <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-emerald/10 text-brand-emerald text-[10px] font-bold uppercase tracking-widest mb-8">
                     <span class="w-1.5 h-1.5 bg-brand-gold rounded-full animate-pulse"></span>
-                    <span data-i18n="hero_badge">Service de médecine holistique</span>
+                    <span data-t="hero-badge">Service de médecine holistique</span>
                 </div>
                 <h1 class="text-5xl md:text-7xl font-black text-brand-dark leading-[1.1] mb-6 tracking-tighter">
-                    <span data-i18n="hero_title1">Centre Ayoub</span> <br>
-                    <span class="gold-text" data-i18n="hero_title2">Hijama</span>
+                    <span data-t="hero-title1">Centre Ayoub</span> <br><span data-t="hero-title2" class="gold-text">Hijama</span>
                 </h1>
-                <p class="text-brand-emerald font-arabic font-bold text-3xl md:text-4xl mb-8 leading-relaxed" data-i18n="hero_arabic">
+                <p data-t="hero-sub" class="text-brand-emerald font-arabic font-bold text-3xl md:text-4xl mb-8 leading-relaxed">
                     مركز أيوب للحجامة
                 </p>
-                <p class="text-slate-500 text-lg mb-10 max-w-lg leading-relaxed" data-i18n="hero_desc">
+                <p data-t="hero-desc" class="text-slate-500 text-lg mb-10 max-w-lg leading-relaxed">
                     Découvrez la puissance de la guérison naturelle par la hijama thérapeutique. Votre bien-être est notre priorité absolue.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="https://wa.me/212638461716"
-                       class="px-8 py-4 bg-brand-emerald text-white rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] shadow-xl text-center btn-premium"
-                       data-i18n="hero_cta1">Réservez votre séance</a>
-                    <a href="#contact"
-                       class="px-8 py-4 bg-white border border-brand-emerald/10 text-brand-emerald rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] shadow-sm text-center"
-                       data-i18n="hero_cta2">Voir la localisation</a>
+                    <a href="https://wa.me/212638461716" data-t="hero-cta1"
+                       class="px-8 py-4 bg-brand-emerald text-white rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] shadow-xl shadow-emerald-900/20 text-center btn-premium">
+                        Réservez votre séance
+                    </a>
+                    <a href="#contact" data-t="hero-cta2"
+                       class="px-8 py-4 bg-white border border-brand-emerald/10 text-brand-emerald rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] shadow-sm text-center">
+                        Voir la localisation
+                    </a>
                 </div>
             </div>
 
             <div class="relative" data-aos="zoom-in" data-aos-delay="200">
                 <div class="relative z-10 rounded-[2.5rem] overflow-hidden shadow-2xl border-[12px] border-white">
-                    <img src="https://scontent.frak3-1.fna.fbcdn.net/v/t39.30808-6/634468158_122109246777219594_3487323672360894103_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=5S93k-GzzdUQ7kNvwGpkKVO&_nc_oc=AdqzSeaLuUjRfrNgdolGTm6SQ36aa_-2-S__zksQMv34frceWoeLYdCs5mkaOrGTANA&_nc_zt=23&_nc_ht=scontent.frak3-1.fna&_nc_gid=MKPfSxc_vims-6pmKPWQ-g&_nc_ss=7b2a8&oh=00_Af6qo-ZYhJp9pQQ7efaAkMj65unwcJ2O-V8zrP89ho64cQ&oe=69FB8ADB"
-                         alt="Hijama Treatment"
-                         class="w-full aspect-[4/5] object-cover"
-                         onerror="this.src='https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'">
-                </div>
+                <img src="https://scontent.frak3-1.fna.fbcdn.net/v/t39.30808-6/634468158_122109246777219594_3487323672360894103_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=5S93k-GzzdUQ7kNvwGpkKVO&_nc_oc=AdqzSeaLuUjRfrNgdolGTm6SQ36aa_-2-S__zksQMv34frceWoeLYdCs5mkaOrGTANA&_nc_zt=23&_nc_ht=scontent.frak3-1.fna&_nc_gid=MKPfSxc_vims-6pmKPWQ-g&_nc_ss=7b2a8&oh=00_Af6qo-ZYhJp9pQQ7efaAkMj65unwcJ2O-V8zrP89ho64cQ&oe=69FB8ADB"
+                             alt="Hijama Treatment"
+                             class="w-full aspect-[4/5] object-cover"
+                             onerror="this.src='https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'">
+                <!-- Floating cards -->
                 <div class="absolute -bottom-6 -left-6 md:-left-12 glass p-6 rounded-3xl shadow-xl z-20 max-w-[200px]"
                      data-aos="fade-up" data-aos-delay="400">
                     <div class="flex items-center gap-3 mb-2">
                         <i class="fas fa-certificate text-brand-gold"></i>
-                        <span class="text-[10px] font-black uppercase tracking-tighter" data-i18n="hero_cert">Certifié</span>
+                        <span data-t="hero-cert" class="text-[10px] font-black uppercase tracking-tighter">Certifié</span>
                     </div>
-                    <p class="text-[11px] text-slate-600 font-medium leading-tight" data-i18n="hero_cert_sub">Experts diplômés en médecine alternative.</p>
+                    <p data-t="hero-cert-sub" class="text-[11px] text-slate-600 font-medium leading-tight">Experts diplômés en médecine alternative.</p>
                 </div>
                 <div class="absolute top-12 -right-6 md:-right-12 bg-brand-dark p-6 rounded-3xl shadow-xl z-20 text-white"
                      data-aos="fade-left" data-aos-delay="500">
                     <div class="text-3xl font-black text-brand-gold mb-1">100%</div>
-                    <p class="text-[9px] font-bold uppercase tracking-widest opacity-70" data-i18n="hero_natural">Naturel & Sûr</p>
+                    <p data-t="hero-natural" class="text-[9px] font-bold uppercase tracking-widest opacity-70">Naturel & Sûr</p>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -493,25 +263,23 @@ function toggleLang() {
                         <div class="w-16 h-16 bg-rose-100 text-rose-500 rounded-2xl flex items-center justify-center text-2xl mb-6">
                             <i class="fas fa-venus"></i>
                         </div>
-                        <h2 class="text-3xl md:text-4xl font-black text-brand-dark mb-4" data-i18n="femmes_title">Section Dédiée aux Femmes</h2>
-                        <p class="text-rose-500 font-arabic font-bold text-2xl mb-6" data-i18n="femmes_arabic">قسم خاص بالسيدات</p>
-                        <p class="text-slate-500 leading-relaxed mb-8" data-i18n="femmes_desc">
+                        <h2 data-t="fem-title" class="text-3xl md:text-4xl font-black text-brand-dark mb-4">Section Dédiée aux Femmes</h2>
+                        <p data-t="fem-sub" class="text-rose-500 font-arabic font-bold text-2xl mb-6">قسم خاص بالسيدات</p>
+                        <p data-t="fem-desc" class="text-slate-500 leading-relaxed mb-8">
                             Nous offrons un environnement totalement privé et confortable avec une équipe féminine hautement qualifiée pour répondre à vos besoins spécifiques en toute sérénité.
                         </p>
                         <ul class="space-y-3 mb-8">
                             <li class="flex items-center gap-3 text-sm font-semibold text-slate-700">
-                                <i class="fas fa-check-circle text-rose-400"></i>
-                                <span data-i18n="femmes_li1">Intimité Totale Garantie</span>
+                                <i class="fas fa-check-circle text-rose-400"></i> <span data-t="fem-li1">Intimité Totale Garantie</span>
                             </li>
                             <li class="flex items-center gap-3 text-sm font-semibold text-slate-700">
-                                <i class="fas fa-check-circle text-rose-400"></i>
-                                <span data-i18n="femmes_li2">Personnel Féminin Spécialisé</span>
+                                <i class="fas fa-check-circle text-rose-400"></i> <span data-t="fem-li2">Personnel Féminin Spécialisé</span>
                             </li>
                         </ul>
                     </div>
                     <div class="rounded-3xl overflow-hidden shadow-lg" data-aos="zoom-in">
                         <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                             class="w-full h-80 object-cover" alt="Section Femmes">
+                             class="w-full h-80 object-cover" alt="Section Femmes" crossorigin="anonymous">
                     </div>
                 </div>
             </div>
@@ -522,9 +290,9 @@ function toggleLang() {
     <section id="services" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-20" data-aos="fade-up">
-                <h2 class="text-[11px] font-black text-brand-gold uppercase tracking-[0.4em] mb-4" data-i18n="svc_label">Prestations</h2>
-                <h3 class="text-4xl md:text-5xl font-black text-brand-dark mb-4" data-i18n="svc_title">Nos Rituels de Soins</h3>
-                <p class="text-brand-emerald font-arabic font-bold text-2xl mb-6" data-i18n="svc_arabic">خدماتنا</p>
+                <h2 data-t="svc-label" class="text-[11px] font-black text-brand-gold uppercase tracking-[0.4em] mb-4">Prestations</h2>
+                <h3 data-t="svc-title" class="text-4xl md:text-5xl font-black text-brand-dark mb-4">Nos Rituels de Soins</h3>
+                <p data-t="svc-sub" class="text-brand-emerald font-arabic font-bold text-2xl mb-6">خدماتنا</p>
                 <div class="w-20 h-1.5 bg-brand-gold mx-auto rounded-full"></div>
             </div>
 
@@ -536,21 +304,21 @@ function toggleLang() {
                         <div class="w-14 h-14 bg-brand-light text-brand-emerald rounded-2xl flex items-center justify-center text-xl">
                             <i class="fas fa-child"></i>
                         </div>
-                        <span class="px-4 py-1 bg-brand-emerald/5 text-brand-emerald text-[9px] font-black uppercase tracking-widest rounded-full" data-i18n="svc_popular">Populaire</span>
+                        <span data-t="svc-popular" class="px-4 py-1 bg-brand-emerald/5 text-brand-emerald text-[9px] font-black uppercase tracking-widest rounded-full">Populaire</span>
                     </div>
-                    <h4 class="text-2xl font-black text-brand-dark mb-2" data-i18n="svc1_name">Hijama du Dos</h4>
-                    <p class="text-slate-400 text-sm mb-8 leading-relaxed" data-i18n="svc1_desc">Libérez les tensions accumulées et purifiez votre corps.</p>
+                    <h4 data-t="svc1-name" class="text-2xl font-black text-brand-dark mb-2">Hijama du Dos</h4>
+                    <p data-t="svc1-desc" class="text-slate-400 text-sm mb-8 leading-relaxed">Libérez les tensions accumulées et purifiez votre corps.</p>
                     <div class="space-y-4">
                         <div class="flex items-center justify-between p-4 rounded-2xl bg-brand-light">
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500" data-i18n="pack1">Pack 1 — Hijama seule</span>
+                            <span data-t="pack1" class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Pack 1 — Hijama seule</span>
                             <span class="text-lg font-black text-brand-emerald">150 DH</span>
                         </div>
                         <div class="flex items-center justify-between p-4 rounded-2xl border border-brand-gold/20 bg-brand-gold/5">
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-brand-dark" data-i18n="pack2_dos">Pack 2 — Massage + Hijama</span>
+                            <span data-t="pack2a" class="text-[10px] font-bold uppercase tracking-wider text-brand-dark">Pack 2 — Massage + Hijama</span>
                             <span class="text-lg font-black text-brand-gold">200 DH</span>
                         </div>
                         <div class="flex items-center justify-between p-4 rounded-2xl bg-brand-dark">
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-white/60" data-i18n="pack3_dos">Pack 3 — Complet + Ventouse</span>
+                            <span data-t="pack3a" class="text-[10px] font-bold uppercase tracking-wider text-white/60">Pack 3 — Complet + Ventouse</span>
                             <span class="text-lg font-black text-brand-gold">300 DH</span>
                         </div>
                     </div>
@@ -561,19 +329,19 @@ function toggleLang() {
                     <div class="w-14 h-14 bg-brand-light text-brand-emerald rounded-2xl flex items-center justify-center text-xl mb-8">
                         <i class="fas fa-walking"></i>
                     </div>
-                    <h4 class="text-2xl font-black text-brand-dark mb-2" data-i18n="svc2_name">Hijama des Jambes</h4>
-                    <p class="text-slate-400 text-sm mb-8 leading-relaxed" data-i18n="svc2_desc">Soulagement circulatoire et détente profonde des membres.</p>
+                    <h4 data-t="svc2-name" class="text-2xl font-black text-brand-dark mb-2">Hijama des Jambes</h4>
+                    <p data-t="svc2-desc" class="text-slate-400 text-sm mb-8 leading-relaxed">Soulagement circulatoire et détente profonde des membres.</p>
                     <div class="space-y-4">
                         <div class="flex items-center justify-between p-4 rounded-2xl bg-brand-light">
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500" data-i18n="pack1">Pack 1 — Hijama seule</span>
+                            <span data-t="pack1" class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Pack 1 — Hijama seule</span>
                             <span class="text-lg font-black text-brand-emerald">150 DH</span>
                         </div>
                         <div class="flex items-center justify-between p-4 rounded-2xl border border-brand-gold/20 bg-brand-gold/5">
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-brand-dark" data-i18n="pack2_jambes">Pack 2 — Massage + Hijama</span>
+                            <span data-t="pack2b" class="text-[10px] font-bold uppercase tracking-wider text-brand-dark">Pack 2 — Massage + Hijama</span>
                             <span class="text-lg font-black text-brand-gold">200 DH</span>
                         </div>
                         <div class="flex items-center justify-between p-4 rounded-2xl bg-brand-dark">
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-white/60" data-i18n="pack3_jambes">Pack 3 — Thérapeutique Complet</span>
+                            <span data-t="pack3b" class="text-[10px] font-bold uppercase tracking-wider text-white/60">Pack 3 — Thérapeutique Complet</span>
                             <span class="text-lg font-black text-brand-gold">300 DH</span>
                         </div>
                     </div>
@@ -584,19 +352,19 @@ function toggleLang() {
                     <div class="w-14 h-14 bg-brand-light text-brand-emerald rounded-2xl flex items-center justify-center text-xl mb-8">
                         <i class="fas fa-heartbeat"></i>
                     </div>
-                    <h4 class="text-2xl font-black text-brand-dark mb-2" data-i18n="svc3_name">Hijama pour le Côlon</h4>
-                    <p class="text-slate-400 text-sm mb-8 leading-relaxed" data-i18n="svc3_desc">Détox digestive et rééquilibrage du transit intestinal.</p>
+                    <h4 data-t="svc3-name" class="text-2xl font-black text-brand-dark mb-2">Hijama pour le Côlon</h4>
+                    <p data-t="svc3-desc" class="text-slate-400 text-sm mb-8 leading-relaxed">Détox digestive et rééquilibrage du transit intestinal.</p>
                     <div class="space-y-4">
                         <div class="flex items-center justify-between p-4 rounded-2xl bg-brand-light">
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500" data-i18n="pack1">Pack 1 — Hijama seule</span>
+                            <span data-t="pack1" class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Pack 1 — Hijama seule</span>
                             <span class="text-lg font-black text-brand-emerald">150 DH</span>
                         </div>
                         <div class="flex items-center justify-between p-4 rounded-2xl border border-brand-gold/20 bg-brand-gold/5">
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-brand-dark" data-i18n="pack2_colon">Pack 2 — Massage + Hijama</span>
+                            <span data-t="pack2c" class="text-[10px] font-bold uppercase tracking-wider text-brand-dark">Pack 2 — Massage + Hijama</span>
                             <span class="text-lg font-black text-brand-gold">200 DH</span>
                         </div>
                         <div class="flex items-center justify-between p-4 rounded-2xl bg-brand-dark">
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-white/60" data-i18n="pack3_colon">Pack 3 — Ventouse + Massage</span>
+                            <span data-t="pack3c" class="text-[10px] font-bold uppercase tracking-wider text-white/60">Pack 3 — Ventouse + Massage</span>
                             <span class="text-lg font-black text-brand-gold">300 DH</span>
                         </div>
                     </div>
@@ -607,10 +375,10 @@ function toggleLang() {
                     <div class="w-14 h-14 bg-brand-light text-brand-emerald rounded-2xl flex items-center justify-center text-xl mb-8">
                         <i class="fas fa-brain"></i>
                     </div>
-                    <h4 class="text-2xl font-black text-brand-dark mb-2" data-i18n="svc4_name">Hijama de la Tête</h4>
-                    <p class="text-slate-400 text-sm mb-8 leading-relaxed" data-i18n="svc4_desc">Idéal pour les migraines, le stress et la clarté mentale.</p>
+                    <h4 data-t="svc4-name" class="text-2xl font-black text-brand-dark mb-2">Hijama de la Tête</h4>
+                    <p data-t="svc4-desc" class="text-slate-400 text-sm mb-8 leading-relaxed">Idéal pour les migraines, le stress et la clarté mentale.</p>
                     <div class="flex items-center justify-between p-4 rounded-2xl bg-brand-dark text-white">
-                        <span class="text-[10px] font-bold uppercase tracking-wider opacity-60" data-i18n="seance_unique">Séance Unique</span>
+                        <span data-t="seance" class="text-[10px] font-bold uppercase tracking-wider opacity-60">Séance Unique</span>
                         <span class="text-lg font-black text-brand-gold">150 DH</span>
                     </div>
                 </div>
@@ -620,15 +388,15 @@ function toggleLang() {
                     <div class="w-14 h-14 bg-brand-light text-brand-emerald rounded-2xl flex items-center justify-center text-xl mb-8">
                         <i class="fas fa-spa"></i>
                     </div>
-                    <h4 class="text-2xl font-black text-brand-dark mb-2" data-i18n="svc5_name">Massage</h4>
-                    <p class="text-slate-400 text-sm mb-8 leading-relaxed" data-i18n="svc5_desc">Sportif ou relaxant — récupération musculaire profonde.</p>
+                    <h4 data-t="svc5-name" class="text-2xl font-black text-brand-dark mb-2">Massage</h4>
+                    <p data-t="svc5-desc" class="text-slate-400 text-sm mb-8 leading-relaxed">Sportif ou relaxant — récupération musculaire profonde.</p>
                     <div class="space-y-3">
                         <div class="flex items-center justify-between p-4 rounded-2xl bg-brand-light">
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500" data-i18n="min30">30 min — Sportif / Relax</span>
+                            <span data-t="min30" class="text-[10px] font-bold uppercase tracking-wider text-slate-500">30 min — Sportif / Relax</span>
                             <span class="text-lg font-black text-brand-emerald">200 DH</span>
                         </div>
                         <div class="flex items-center justify-between p-4 rounded-2xl border border-brand-gold/20 bg-brand-gold/5">
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-brand-dark" data-i18n="min50">50 min — Sportif / Relax</span>
+                            <span data-t="min50" class="text-[10px] font-bold uppercase tracking-wider text-brand-dark">50 min — Sportif / Relax</span>
                             <span class="text-lg font-black text-brand-gold">300 DH</span>
                         </div>
                     </div>
@@ -642,54 +410,57 @@ function toggleLang() {
     <section id="why" class="py-24 bg-brand-dark relative overflow-hidden">
         <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         <div class="max-w-7xl mx-auto px-6 relative z-10">
+
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-brand-gold font-black uppercase tracking-[0.3em] text-xs mb-4" data-i18n="why_label">Notre Engagement</h2>
-                <h3 class="text-4xl md:text-5xl font-black text-white mb-4" data-i18n="why_title">Pourquoi choisir le Centre Ayoub ?</h3>
-                <p class="text-brand-gold/60 font-arabic font-bold text-xl" data-i18n="why_arabic">لماذا تختارنا؟</p>
+                <h2 data-t="why-label" class="text-brand-gold font-black uppercase tracking-[0.3em] text-xs mb-4">Notre Engagement</h2>
+                <h3 data-t="why-title" class="text-4xl md:text-5xl font-black text-white mb-4">Pourquoi choisir le Centre Ayoub ?</h3>
+                <p data-t="why-sub" class="text-brand-emerald font-arabic font-bold text-2xl">لماذا تختارنا؟</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="bg-white/5 border border-white/10 rounded-[2rem] p-10 text-center hover:border-brand-gold/50 transition-all duration-300" data-aos="fade-up">
                     <div class="w-14 h-14 bg-brand-gold/20 text-brand-gold rounded-full flex items-center justify-center text-xl mx-auto mb-6"><i class="fas fa-user-check"></i></div>
-                    <h4 class="text-xl font-black text-white mb-3" data-i18n="why1_t">Équipe Spécialisée</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="why1_d">Praticiens certifiés et expérimentés en hijama thérapeutique.</p>
+                    <h4 data-t="why1-t" class="text-xl font-black text-white mb-3">Équipe Spécialisée</h4>
+                    <p data-t="why1-d" class="text-slate-400 text-sm leading-relaxed">Praticiens certifiés et expérimentés en hijama thérapeutique.</p>
                 </div>
                 <div class="bg-white/5 border border-white/10 rounded-[2rem] p-10 text-center hover:border-brand-gold/50 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
                     <div class="w-14 h-14 bg-brand-gold/20 text-brand-gold rounded-full flex items-center justify-center text-xl mx-auto mb-6"><i class="fas fa-shield-alt"></i></div>
-                    <h4 class="text-xl font-black text-white mb-3" data-i18n="why2_t">Hygiène & Sécurité</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="why2_d">Environnement stérilisé avec matériel médical à usage unique.</p>
+                    <h4 data-t="why2-t" class="text-xl font-black text-white mb-3">Hygiène & Sécurité</h4>
+                    <p data-t="why2-d" class="text-slate-400 text-sm leading-relaxed">Environnement stérilisé avec matériel médical à usage unique.</p>
                 </div>
                 <div class="bg-white/5 border border-white/10 rounded-[2rem] p-10 text-center hover:border-brand-gold/50 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
                     <div class="w-14 h-14 bg-brand-gold/20 text-brand-gold rounded-full flex items-center justify-center text-xl mx-auto mb-6"><i class="fas fa-tools"></i></div>
-                    <h4 class="text-xl font-black text-white mb-3" data-i18n="why3_t">Équipements Modernes</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="why3_d">Technologies récentes pour des soins efficaces et confortables.</p>
+                    <h4 data-t="why3-t" class="text-xl font-black text-white mb-3">Équipements Modernes</h4>
+                    <p data-t="why3-d" class="text-slate-400 text-sm leading-relaxed">Technologies récentes pour des soins efficaces et confortables.</p>
                 </div>
                 <div class="bg-white/5 border border-white/10 rounded-[2rem] p-10 text-center hover:border-brand-gold/50 transition-all duration-300" data-aos="fade-up">
                     <div class="w-14 h-14 bg-brand-gold/20 text-brand-gold rounded-full flex items-center justify-center text-xl mx-auto mb-6"><i class="fas fa-heart"></i></div>
-                    <h4 class="text-xl font-black text-white mb-3" data-i18n="why4_t">Suivi Personnalisé</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="why4_d">Accompagnement individuel et bienveillant pour chaque patient.</p>
+                    <h4 data-t="why4-t" class="text-xl font-black text-white mb-3">Suivi Personnalisé</h4>
+                    <p data-t="why4-d" class="text-slate-400 text-sm leading-relaxed">Accompagnement individuel et bienveillant pour chaque patient.</p>
                 </div>
                 <div class="bg-white/5 border border-white/10 rounded-[2rem] p-10 text-center hover:border-brand-gold/50 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
                     <div class="w-14 h-14 bg-brand-gold/20 text-brand-gold rounded-full flex items-center justify-center text-xl mx-auto mb-6"><i class="fas fa-calendar-alt"></i></div>
-                    <h4 class="text-xl font-black text-white mb-3" data-i18n="why5_t">Horaires Flexibles</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="why5_d">Ouvert 7 jours sur 7, de 9h00 à 20h00.</p>
+                    <h4 data-t="why5-t" class="text-xl font-black text-white mb-3">Horaires Flexibles</h4>
+                    <p data-t="why5-d" class="text-slate-400 text-sm leading-relaxed">Ouvert 7 jours sur 7, de 9h00 à 20h00.</p>
                 </div>
                 <div class="bg-white/5 border border-white/10 rounded-[2rem] p-10 text-center hover:border-brand-gold/50 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
                     <div class="w-14 h-14 bg-brand-gold/20 text-brand-gold rounded-full flex items-center justify-center text-xl mx-auto mb-6"><i class="fas fa-users"></i></div>
-                    <h4 class="text-xl font-black text-white mb-3" data-i18n="why6_t">Sections Séparées</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="why6_d">Espaces dédiés hommes et femmes pour plus d'intimité.</p>
+                    <h4 data-t="why6-t" class="text-xl font-black text-white mb-3">Sections Séparées</h4>
+                    <p data-t="why6-d" class="text-slate-400 text-sm leading-relaxed">Espaces dédiés hommes et femmes pour plus d'intimité.</p>
                 </div>
             </div>
 
+            <!-- Quote -->
             <div class="mt-20 max-w-2xl mx-auto" data-aos="zoom-in">
                 <div class="border-2 border-brand-gold/30 rounded-[2rem] p-12 text-center">
                     <i class="fas fa-quote-left text-4xl text-brand-gold mb-6 block"></i>
-                    <p class="text-xl text-white font-medium italic mb-6" data-i18n="quote">
+                    <p data-t="quote" class="text-xl text-white font-medium italic mb-6">
                         "La santé est une couronne sur la tête des bien-portants que seuls les malades voient."
                     </p>
-                    <span class="text-brand-gold font-black uppercase tracking-widest text-[10px]" data-i18n="quote_src">Sagesse Orientale</span>
+                    <span data-t="quote-src" class="text-brand-gold font-black uppercase tracking-widest text-[10px]">Sagesse Orientale</span>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -697,33 +468,34 @@ function toggleLang() {
     <section id="contact" class="py-24 bg-brand-light">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-[11px] font-black text-brand-gold uppercase tracking-[0.4em] mb-4" data-i18n="contact_label">Localisation</h2>
-                <h3 class="text-4xl md:text-5xl font-black text-brand-dark mb-2" data-i18n="contact_title">Nous Trouver</h3>
-                <p class="text-brand-emerald font-arabic font-bold text-2xl" data-i18n="contact_arabic">اتصل بنا</p>
+                <h2 data-t="contact-label" class="text-[11px] font-black text-brand-gold uppercase tracking-[0.4em] mb-4">Localisation</h2>
+                <h3 data-t="contact-title" class="text-4xl md:text-5xl font-black text-brand-dark mb-2">Nous Trouver</h3>
+                <p data-t="contact-sub" class="text-brand-emerald font-arabic font-bold text-2xl">اتصل بنا</p>
             </div>
 
             <div class="bg-white rounded-[3rem] overflow-hidden shadow-xl border border-slate-100 grid lg:grid-cols-5">
+
                 <div class="lg:col-span-2 p-10 md:p-16">
                     <div class="space-y-10">
                         <div class="flex gap-6">
                             <div class="flex-shrink-0 text-brand-gold text-xl mt-1"><i class="fas fa-map-marked-alt"></i></div>
                             <div>
-                                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1" data-i18n="addr_label">Adresse</p>
-                                <p class="font-bold text-brand-emerald" data-i18n="addr_val">206, 212 Bd de Témara, Casablanca, Maroc</p>
+                                <p data-t="addr-label" class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Adresse</p>
+                                <p data-t="addr-val" class="font-bold text-brand-emerald">206, 212 Bd de Témara, Casablanca, Maroc</p>
                             </div>
                         </div>
                         <div class="flex gap-6">
                             <div class="flex-shrink-0 text-brand-gold text-xl mt-1"><i class="fas fa-clock"></i></div>
                             <div>
-                                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1" data-i18n="hours_label">Disponibilité</p>
-                                <p class="font-bold text-brand-emerald" data-i18n="hours_val">7j/7 — 09:00 à 20:00</p>
+                                <p data-t="hours-label" class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Disponibilité</p>
+                                <p data-t="hours-val" class="font-bold text-brand-emerald">7j/7 — 09:00 à 20:00</p>
                             </div>
                         </div>
                         <div class="flex gap-6">
                             <div class="flex-shrink-0 text-brand-gold text-xl mt-1"><i class="fas fa-phone-square-alt"></i></div>
                             <div>
-                                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1" data-i18n="phone_label">Contact Direct</p>
-                                <p class="font-bold text-brand-emerald" data-i18n="phone_val">0638-461716</p>
+                                <p data-t="phone-label" class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Contact Direct</p>
+                                <p class="font-bold text-brand-emerald">0638-461716</p>
                             </div>
                         </div>
                     </div>
@@ -753,6 +525,7 @@ function toggleLang() {
                         width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
                     </iframe>
                 </div>
+
             </div>
         </div>
     </section>
@@ -766,8 +539,8 @@ function toggleLang() {
                         <i class="fas fa-leaf text-xl"></i>
                     </div>
                     <div>
-                        <h4 class="font-black uppercase tracking-widest text-sm" data-i18n="nav_brand">Centre Ayoub</h4>
-                        <p class="text-xs text-white/50 font-arabic" data-i18n="nav_brand_sub">مركز أيوب للحجامة</p>
+                        <h4 class="font-black uppercase tracking-widest text-sm">Centre Ayoub</h4>
+                        <p class="text-xs text-white/50 font-arabic">مركز أيوب للحجامة</p>
                     </div>
                 </div>
                 <div class="flex gap-6 flex-wrap justify-center">
@@ -778,10 +551,23 @@ function toggleLang() {
                 </div>
             </div>
             <div class="text-center pt-8 border-t border-white/5">
-                <p class="text-[9px] font-bold text-white/30 uppercase tracking-[0.5em]" data-i18n="footer_copy">© 2026 Centre Ayoub Hijama. Excellence in Wellbeing.</p>
+                <p class="text-[9px] font-bold text-white/30 uppercase tracking-[0.5em]" data-t="footer-copy">© 2025 Centre Ayoub Hijama. Excellence in Wellbeing.</p>
             </div>
         </div>
     </footer>
+
+    <!-- ░░ FLOATING LANGUAGE BUTTON ░░ -->
+    <button id="lang-btn" onclick="toggleLang()"
+        style="position:fixed;top:90px;right:16px;z-index:9999;
+               display:flex;align-items:center;gap:8px;
+               padding:10px 16px;border-radius:14px;
+               background:white;border:2px solid #C5A358;
+               font-family:'Cairo',sans-serif;font-weight:900;
+               font-size:13px;color:#064E3B;
+               box-shadow:0 4px 20px rgba(0,0,0,0.12);
+               cursor:pointer;transition:all 0.25s;">
+        🌐 <span id="lang-label">عربي</span>
+    </button>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
@@ -789,12 +575,184 @@ function toggleLang() {
             AOS.init({ duration: 1000, once: true, offset: 100 });
         });
 
+        /* ── Language Switcher ── */
+        let isArabic = false;
+
+        const arTexts = {
+            /* Nav */
+            'nav-accueil':   'الرئيسية',
+            'nav-femmes':    'قسم السيدات',
+            'nav-services':  'خدماتنا',
+            'nav-why':       'لماذا نحن',
+            'nav-contact':   'التواصل',
+            'nav-rdv':       'احجز موعد',
+            'nav-brand':     'مركز أيوب',
+            'nav-brand-sub': 'Centre Ayoub Hijama',
+            /* Hero */
+            'hero-badge':    'خدمة الطب الشمولي الطبيعي',
+            'hero-title1':   'مركز أيوب',
+            'hero-title2':   'للحجامة',
+            'hero-sub':      'Centre Ayoub Hijama',
+            'hero-desc':     'اكتشف قوة الشفاء الطبيعي من خلال العلاج بالحجامة. صحتك وراحتك هي أولويتنا القصوى.',
+            'hero-cta1':     'احجز جلستك الآن',
+            'hero-cta2':     'عرض الموقع',
+            'hero-cert':     'معتمد',
+            'hero-cert-sub': 'خبراء حاصلون على شهادات في الطب البديل.',
+            'hero-natural':  '١٠٠٪ طبيعي وآمن',
+            /* Femmes */
+            'fem-title':  'قسم خاص بالسيدات',
+            'fem-sub':    'Section Dédiée aux Femmes',
+            'fem-desc':   'نوفر بيئة خاصة ومريحة بالكامل مع فريق نسائي متخصص للاستجابة لاحتياجاتك بكل راحة وطمأنينة.',
+            'fem-li1':    'خصوصية تامة مضمونة',
+            'fem-li2':    'طاقم نسائي متخصص',
+            /* Services */
+            'svc-label':   'خدماتنا',
+            'svc-title':   'جلسات العلاج والرعاية',
+            'svc-sub':     'Nos Rituels de Soins',
+            'svc-popular': 'الأكثر طلباً',
+            'svc1-name': 'حجامة الظهر',
+            'svc1-desc': 'تحرير من التوترات المتراكمة وتنقية الجسم.',
+            'svc2-name': 'حجامة الأرجل',
+            'svc2-desc': 'تحسين الدورة الدموية واسترخاء عميق للأطراف.',
+            'svc3-name': 'حجامة القولون',
+            'svc3-desc': 'تخليص هضمي وإعادة توازن الجهاز الهضمي.',
+            'svc4-name': 'حجامة الرأس',
+            'svc4-desc': 'مثالية للصداع النصفي والتوتر والوضوح الذهني.',
+            'svc5-name': 'التدليك',
+            'svc5-desc': 'رياضي أو مريح — استرداد عضلي عميق.',
+            'pack1':  'الباقة 1 — حجامة فقط',
+            'pack2a': 'الباقة 2 — تدليك + حجامة',
+            'pack3a': 'الباقة 3 — شاملة + كاسات',
+            'pack2b': 'الباقة 2 — تدليك + حجامة',
+            'pack3b': 'الباقة 3 — علاجية شاملة',
+            'pack2c': 'الباقة 2 — تدليك + حجامة',
+            'pack3c': 'الباقة 3 — كاسات + تدليك',
+            'seance': 'جلسة واحدة',
+            'min30':  '٣٠ دقيقة — رياضي / مريح',
+            'min50':  '٥٠ دقيقة — رياضي / مريح',
+            /* Why */
+            'why-label': 'التزامنا',
+            'why-title': 'لماذا تختار مركز أيوب؟',
+            'why-sub':   'Pourquoi choisir Centre Ayoub ?',
+            'why1-t': 'فريق متخصص',         'why1-d': 'ممارسون معتمدون وذوو خبرة في الحجامة العلاجية.',
+            'why2-t': 'النظافة والسلامة',    'why2-d': 'بيئة معقمة مع مواد طبية للاستخدام مرة واحدة.',
+            'why3-t': 'معدات حديثة',         'why3-d': 'تقنيات حديثة لرعاية فعالة ومريحة.',
+            'why4-t': 'متابعة شخصية',        'why4-d': 'مرافقة فردية وعطوفة لكل مريض.',
+            'why5-t': 'مواعيد مرنة',         'why5-d': 'مفتوح 7 أيام في الأسبوع من 9:00 صباحاً حتى 8:00 مساءً.',
+            'why6-t': 'أقسام منفصلة',        'why6-d': 'فضاءات مخصصة للرجال والنساء لمزيد من الخصوصية.',
+            'quote':     '«الصحة تاج على رؤوس الأصحاء لا يراه إلا المرضى.»',
+            'quote-src': 'حكمة شرقية',
+            /* Contact */
+            'contact-label': 'الموقع',
+            'contact-title': 'أين نجدنا',
+            'contact-sub':   'اتصل بنا',
+            'addr-label':  'العنوان',
+            'addr-val':    '206، 212 شارع تمارة، الدار البيضاء، المغرب',
+            'hours-label': 'أوقات العمل',
+            'hours-val':   '7 أيام — 09:00 إلى 20:00',
+            'phone-label': 'تواصل مباشر',
+            /* Footer */
+            'footer-copy': '© 2025 مركز أيوب للحجامة. التميز في الصحة والعافية.',
+            /* Floating bar */
+            'bar-reserve': 'احجز الآن',
+            /* Mobile menu */
+            'menu-label': 'القائمة',
+        };
+
+        const frTexts = {
+            'nav-accueil':   'Accueil',
+            'nav-femmes':    'Section Femmes',
+            'nav-services':  'Services',
+            'nav-why':       'Pourquoi Nous',
+            'nav-contact':   'Contact',
+            'nav-rdv':       'Prendre RDV',
+            'nav-brand':     'Centre Ayoub',
+            'nav-brand-sub': 'مركز أيوب للحجامة',
+            'hero-badge':  'Service de médecine holistique',
+            'hero-title1': 'Centre Ayoub',
+            'hero-title2': 'Hijama',
+            'hero-sub':    'مركز أيوب للحجامة',
+            'hero-desc':   "Découvrez la puissance de la guérison naturelle par la hijama thérapeutique. Votre bien-être est notre priorité absolue.",
+            'hero-cta1':   'Réservez votre séance',
+            'hero-cta2':   'Voir la localisation',
+            'hero-cert':   'Certifié',
+            'hero-cert-sub': 'Experts diplômés en médecine alternative.',
+            'hero-natural': '100% Naturel & Sûr',
+            'fem-title': 'Section Dédiée aux Femmes',
+            'fem-sub':   'قسم خاص بالسيدات',
+            'fem-desc':  "Nous offrons un environnement totalement privé et confortable avec une équipe féminine hautement qualifiée pour répondre à vos besoins spécifiques en toute sérénité.",
+            'fem-li1': 'Intimité Totale Garantie',
+            'fem-li2': 'Personnel Féminin Spécialisé',
+            'svc-label':   'Prestations',
+            'svc-title':   'Nos Rituels de Soins',
+            'svc-sub':     'خدماتنا',
+            'svc-popular': 'Populaire',
+            'svc1-name': 'Hijama du Dos',     'svc1-desc': 'Libérez les tensions accumulées et purifiez votre corps.',
+            'svc2-name': 'Hijama des Jambes', 'svc2-desc': 'Soulagement circulatoire et détente profonde des membres.',
+            'svc3-name': 'Hijama pour le Côlon', 'svc3-desc': 'Détox digestive et rééquilibrage du transit intestinal.',
+            'svc4-name': 'Hijama de la Tête', 'svc4-desc': 'Idéal pour les migraines, le stress et la clarté mentale.',
+            'svc5-name': 'Massage',           'svc5-desc': 'Sportif ou relaxant — récupération musculaire profonde.',
+            'pack1':  'Pack 1 — Hijama seule',
+            'pack2a': 'Pack 2 — Massage + Hijama', 'pack3a': 'Pack 3 — Complet + Ventouse',
+            'pack2b': 'Pack 2 — Massage + Hijama', 'pack3b': 'Pack 3 — Thérapeutique Complet',
+            'pack2c': 'Pack 2 — Massage + Hijama', 'pack3c': 'Pack 3 — Ventouse + Massage',
+            'seance': 'Séance Unique',
+            'min30': '30 min — Sportif / Relax', 'min50': '50 min — Sportif / Relax',
+            'why-label': 'Notre Engagement',
+            'why-title': 'Pourquoi choisir le Centre Ayoub ?',
+            'why-sub':   'لماذا تختارنا؟',
+            'why1-t': 'Équipe Spécialisée',    'why1-d': 'Praticiens certifiés et expérimentés en hijama thérapeutique.',
+            'why2-t': 'Hygiène & Sécurité',    'why2-d': 'Environnement stérilisé avec matériel médical à usage unique.',
+            'why3-t': 'Équipements Modernes',   'why3-d': 'Technologies récentes pour des soins efficaces et confortables.',
+            'why4-t': 'Suivi Personnalisé',     'why4-d': 'Accompagnement individuel et bienveillant pour chaque patient.',
+            'why5-t': 'Horaires Flexibles',     'why5-d': 'Ouvert 7 jours sur 7, de 9h00 à 20h00.',
+            'why6-t': 'Sections Séparées',      'why6-d': "Espaces dédiés hommes et femmes pour plus d'intimité.",
+            'quote':     '"La santé est une couronne sur la tête des bien-portants que seuls les malades voient."',
+            'quote-src': 'Sagesse Orientale',
+            'contact-label': 'Localisation',
+            'contact-title': 'Nous Trouver',
+            'contact-sub':   'اتصل بنا',
+            'addr-label':  'Adresse',    'addr-val':   '206, 212 Bd de Témara, Casablanca, Maroc',
+            'hours-label': 'Disponibilité', 'hours-val': '7j/7 — 09:00 à 20:00',
+            'phone-label': 'Contact Direct',
+            'footer-copy': '© 2025 Centre Ayoub Hijama. Excellence in Wellbeing.',
+            'bar-reserve': 'Réserver maintenant',
+            'menu-label':  'Menu',
+        };
+
+        function toggleLang() {
+            isArabic = !isArabic;
+            const texts = isArabic ? arTexts : frTexts;
+            const html = document.documentElement;
+
+            // RTL / LTR
+            html.setAttribute('dir', isArabic ? 'rtl' : 'ltr');
+            html.setAttribute('lang', isArabic ? 'ar' : 'fr');
+            document.body.style.fontFamily = isArabic ? "'Cairo', sans-serif" : "'Plus Jakarta Sans', sans-serif";
+            document.title = isArabic ? 'مركز أيوب للحجامة | التميز العلاجي' : 'Centre Ayoub Hijama | Excellence Thérapeutique';
+
+            // Update all tagged elements
+            document.querySelectorAll('[data-t]').forEach(el => {
+                const key = el.getAttribute('data-t');
+                if (texts[key]) el.textContent = texts[key];
+            });
+
+            // Button label
+            document.getElementById('lang-label').textContent = isArabic ? 'FR' : 'عربي';
+
+            // Flip floating lang button to left in RTL
+            const btn = document.getElementById('lang-btn');
+            btn.style.right = isArabic ? 'auto' : '16px';
+            btn.style.left  = isArabic ? '16px' : 'auto';
+        }
+
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('translate-x-full');
             document.body.style.overflow = menu.classList.contains('translate-x-full') ? 'auto' : 'hidden';
         }
 
+        // Sticky navbar shrink
         window.addEventListener('scroll', () => {
             const inner = document.querySelector('#mainNav > div');
             if (window.scrollY > 50) {
@@ -808,17 +766,3 @@ function toggleLang() {
     </script>
 </body>
 </html>
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Python Debugger: Current File",
-            "type": "debugpy",
-            "request": "launch",
-            "program": "${file}",
-            "console": "integratedTerminal"
-        }
-    ]
-}
